@@ -32,10 +32,10 @@ namespace EnemyLogic {
 
 		private void AttackTarget() {
 			var targetPosition = _targetTransform.position;
-			var direction = (targetPosition - _transform.position).normalized;
+			var direction = (_transform.position - targetPosition).normalized;
 			direction.y = 0;
 			_transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
-			_rigidbody.AddForce(direction * _moveSpeed);
+			_transform.Translate(direction * -_moveSpeed);
 		}
 	}
 }
