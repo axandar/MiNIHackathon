@@ -30,6 +30,8 @@ namespace EnemyLogic {
 			if (other.CompareTag(Tags.MAIN_CAMERA)) {
 				_touchedPlayer = true;
 				_rigid.freezeRotation = true;
+				other.GetComponent<HealthScript>().HitByEnemy();
+				Destroy(gameObject);
 			}
 		}
 
