@@ -4,23 +4,11 @@ using UnityEngine;
 
 public class GameMenu : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public void Show()
-    {
+    public void Show(){
         gameObject.SetActive(true);
     }
 
-    public void Hide()
-    {
+    public void Hide(){
         gameObject.SetActive(false);
     }
 }
