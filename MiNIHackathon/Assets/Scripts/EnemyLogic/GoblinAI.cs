@@ -37,6 +37,7 @@ namespace EnemyLogic {
 
 		private void AttackTarget() {
 			var direction = (_transform.position - _targetTransform.position).normalized;
+			direction.y = 0;
 			var targetDir = _targetTransform.position - transform.position;
 			var step = Time.deltaTime;
 			var newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0f);
