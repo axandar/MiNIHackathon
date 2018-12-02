@@ -14,7 +14,7 @@ namespace EnemyLogic {
 
 		private void Start() {
 			_transform = transform;
-			_targetTransform = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
+			_targetTransform = GameObject.FindGameObjectWithTag(Tags.MAIN_CAMERA).transform;
 			_rigidbody = _transform.GetComponent<Rigidbody>();
 		}
 
@@ -25,7 +25,7 @@ namespace EnemyLogic {
 		}
 
 		private void OnTriggerEnter(Collider other) {
-			if (other.CompareTag(Tags.PLAYER)) {
+			if (other.CompareTag(Tags.MAIN_CAMERA)) {
 				_touchedPlayer = true;
 			}
 		}

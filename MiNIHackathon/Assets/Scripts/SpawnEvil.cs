@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class SpawnEvil : MonoBehaviour
-{
-
-
+public class SpawnEvil : MonoBehaviour{
 	[SerializeField][Range(0.1f,10f)] private float _spawnRate;
 	[SerializeField] private Transform _targetTransform;
-
 	[SerializeField] private GameObject _evilSnowman;
-
-	[SerializeField] private float _radius, _minSpawnDist = 5f;
+	[SerializeField] private float _radius;
+	[SerializeField] private float _minSpawnDist = 5f;
 
 	private Vector3 _enemyPosition;
 	private bool _needNewSpawnPoint;
@@ -41,8 +37,7 @@ public class SpawnEvil : MonoBehaviour
 		}
 	}
 
-	private void OnDrawGizmos()
-	{
+	private void OnDrawGizmos(){
 		Gizmos.DrawWireSphere(_targetTransform.position,_radius);
 	}
 }
