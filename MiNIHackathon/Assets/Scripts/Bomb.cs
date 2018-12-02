@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using DefaultNamespace;
+using Readonly_Data;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour{
