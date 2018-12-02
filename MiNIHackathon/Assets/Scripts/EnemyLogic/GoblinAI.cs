@@ -2,8 +2,10 @@
 using UnityEngine;
 
 namespace EnemyLogic {
-	public class GoblinAI : MonoBehaviour {
+	public class GoblinAI : MonoBehaviour
+	{
 
+		
 		[SerializeField] private Transform _targetTransform;
 		[SerializeField] private float _moveSpeed;
 		[SerializeField] private float _wiggliness;
@@ -11,11 +13,14 @@ namespace EnemyLogic {
 		private Rigidbody _rigidbody;
 		private float _groundLevel;
 		private bool _touchedPlayer;
+		private AudioSource _scream;
+		
 
 		private void Start() {
 			_transform = transform;
 			_targetTransform = GameObject.FindGameObjectWithTag(Tags.MAIN_CAMERA).transform;
 			_rigidbody = _transform.GetComponent<Rigidbody>();
+			_scream = GetComponent<AudioSource>();
 		}
 
 		private void Update() {
@@ -37,5 +42,13 @@ namespace EnemyLogic {
 			_transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
 			_rigidbody.AddForce(direction * _moveSpeed);
 		}
+
+		public void Kill(){
+			_scream.Play();	
+			GetComponent<CapsuleCollider>().enabled = false;
+			GetComponent<MeshRenderer>().enabled = false;
+			Destroy(gameObject,_scream.clip.length);
+		}
+		
 	}
 }
