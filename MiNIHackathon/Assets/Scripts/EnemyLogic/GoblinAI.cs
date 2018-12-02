@@ -2,23 +2,24 @@
 using UnityEngine;
 
 namespace EnemyLogic {
-	public class GoblinAI : MonoBehaviour {
+	public class GoblinAI : MonoBehaviour
+	{
 
+		
 		[SerializeField] private Transform _targetTransform;
 		[SerializeField] private float _moveSpeed;
-		[SerializeField] private float _wiggliness;
 		private Transform _transform;
-		private Rigidbody _rigidbody;
 		private float _groundLevel;
 		private bool _touchedPlayer;
+		private AudioSource _scream;
+		
 
 		private void Start() {
 			_transform = transform;
 			_targetTransform = GameObject.FindGameObjectWithTag(Tags.MAIN_CAMERA).transform;
-			_rigidbody = _transform.GetComponent<Rigidbody>();
 		}
 
-		private void Update() {
+		private void FixedUpdate() {
 			if (!_touchedPlayer) {
 				AttackTarget();
 			}
@@ -31,11 +32,22 @@ namespace EnemyLogic {
 		}
 
 		private void AttackTarget() {
-			var targetPosition = _targetTransform.position;
-			var direction = (_transform.position - targetPosition).normalized;
-			direction.y = 0;
-			_transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+			var direction = (_transform.position - _targetTransform.position).normalized;
+			var targetDir = _targetTransform.position - transform.position;
+			var step = Time.deltaTime;
+			var newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0f);
+			Debug.DrawRay(transform.position, newDir, Color.red);
+		
+			transform.rotation = Quaternion.LookRotation(newDir);
 			_transform.Translate(direction * -_moveSpeed);
 		}
+
+		public void Kill(){
+			_scream.Play();	
+			GetComponent<CapsuleCollider>().enabled = false;
+			GetComponent<MeshRenderer>().enabled = false;
+			Destroy(gameObject,_scream.clip.length);
+		}
+		
 	}
 }
