@@ -18,16 +18,14 @@ public class SpawnEvil : MonoBehaviour{
 	}
 
 	private void FixedUpdate(){
-		
-			var tempEnemyPosition = Random.insideUnitSphere * _radius;
-			tempEnemyPosition.y = 0;
-		
-			var distance = Vector3.Distance(_targetTransform.position, tempEnemyPosition);
+		var tempEnemyPosition = Random.insideUnitSphere * _radius;
+		tempEnemyPosition.y = 0;
 	
-			if (distance > _minSpawnDist){
-				_enemyPosition = tempEnemyPosition;
-			}
-		
+		var distance = Vector3.Distance(_targetTransform.position, tempEnemyPosition);
+
+		if (distance > _minSpawnDist){
+			_enemyPosition = tempEnemyPosition;
+		}
 	}
 
 	private IEnumerator SpawnEvilSnowmen(){
