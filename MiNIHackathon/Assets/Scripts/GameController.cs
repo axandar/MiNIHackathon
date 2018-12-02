@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using HoloToolkit.Unity.InputModule;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public class GameController : MonoBehaviour {
     
@@ -11,21 +7,8 @@ public class GameController : MonoBehaviour {
 
     private bool _isGravity;
 
-    private void Start(){
-        if (!Cursor){
-            Debug.LogError("!Cursor");
-        }
-        if (!SpawnObjectPrefab){
-            Debug.LogError("!spawnObjectPrefab");
-        }
-
-        //GravityOff();
-    }
-
     public void StartGame(){
-        Debug.Log("GameController::StartGame");
-
-        SpawnObject();
+        //SpawnObject();
     }
 
     public void SpawnObject(){
@@ -33,7 +16,6 @@ public class GameController : MonoBehaviour {
     }
 
     public void Spawn(Spawnable spawnObjectPrefab, Vector3 position, Quaternion rotation){
-        Debug.Log("Spawner::Spawn");
         var spawnedObject = Instantiate(spawnObjectPrefab, position, rotation, null);
 
         SpawnInit(spawnedObject);
@@ -57,9 +39,6 @@ public class GameController : MonoBehaviour {
 
     public void GravityOn(){
         _isGravity = true;
-
-        Debug.Log("Spawner::GravityOn");
-
         var foundObjects = FindObjectsOfType<Rigidbody>();
         foreach(var foundObject in foundObjects){
             foundObject.isKinematic = false;
@@ -68,9 +47,6 @@ public class GameController : MonoBehaviour {
 
     public void GravityOff(){
         _isGravity = false;
-
-        Debug.Log("Spawner::GravityOff");
-
         var foundObjects = FindObjectsOfType<Rigidbody>();
         foreach (var foundObject in foundObjects){
             foundObject.isKinematic = true;

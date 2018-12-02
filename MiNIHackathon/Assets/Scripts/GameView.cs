@@ -7,20 +7,8 @@ public class GameView : MonoBehaviour {
 
     public GameController GameController;
     public GameMenu GameMenu;
-    
-    private void Start(){
-        if (!GameController){
-            Debug.LogError("!gameController");
-        }
-        
-        if (!GameMenu){
-            Debug.LogError("!gameMenu");
-        }
-    }
 
     public void StartClick(){
-        Debug.Log("GameView::StartClick");
-
         HideMenu();
         GameController.StartGame();
     }
