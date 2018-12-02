@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 435c4819bbe6f2748bf3209fcc8175c7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _enemyScream: {fileID: 8300000, guid: 6c1303605ea0eb643b2e6345ba873511, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
