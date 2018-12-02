@@ -33,14 +33,10 @@ public class Bomb : MonoBehaviour{
 	}
 
 	private void Boom(){
-//		Debug.Log("Boom");
 		var objects = Physics.OverlapSphere(transform.position, 2);
 		foreach(var obj in objects){
-			if(obj.CompareTag(Tags.ENEMY))
-			{
-			
+			if(obj.CompareTag(Tags.ENEMY)){
 				obj.GetComponent<GoblinAI>().Kill();
-				
 			}
 		}
 
