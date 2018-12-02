@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EnemyLogic;
 using Readonly_Data;
 using UnityEngine;
 
@@ -32,11 +33,10 @@ public class Bomb : MonoBehaviour{
 	}
 
 	private void Boom(){
-		Debug.Log("Boom");
 		var objects = Physics.OverlapSphere(transform.position, 2);
 		foreach(var obj in objects){
 			if(obj.CompareTag(Tags.ENEMY)){
-				Destroy(obj.gameObject);
+				obj.GetComponent<GoblinAI>().Kill();
 			}
 		}
 

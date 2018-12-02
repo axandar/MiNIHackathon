@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cursor: {fileID: 307031168}
-  Bomb: {fileID: 114462782719105850, guid: d59eaf0dd6c287b4caea7906e79bc011, type: 2}
+  Bomb: {fileID: 114497377448809700, guid: 56139289d651ccb498bd624e8d950f93, type: 2}
 --- !u!1 &371216474
 GameObject:
   m_ObjectHideFlags: 0
