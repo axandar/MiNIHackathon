@@ -7,6 +7,15 @@ public class Bomb : MonoBehaviour{
 
 	public float RocketSpeed;
 	private Vector3 _targetPosition;
+	private AudioSource _enemyScreamSource;
+	
+	[SerializeField] private AudioClip _enemyScream;
+
+	private void Start()
+	{
+		_enemyScreamSource.playOnAwake = false;
+		_enemyScreamSource.clip = _enemyScream;
+	}
 
 	public void AttachTarget(GameObject target){
 		_targetPosition = target.transform.position;
@@ -36,6 +45,7 @@ public class Bomb : MonoBehaviour{
 		var objects = Physics.OverlapSphere(transform.position, 2);
 		foreach(var obj in objects){
 			if(obj.CompareTag(Tags.ENEMY)){
+				_enemyScreamSource.Play();
 				Destroy(obj.gameObject);
 			}
 		}
