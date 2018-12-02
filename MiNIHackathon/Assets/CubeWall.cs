@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class CubeWall : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-        this.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
+	private void Start () {
+        GetComponent<Renderer>().material.color = new Color(1, 0, 0);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

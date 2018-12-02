@@ -2,100 +2,77 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity.InputModule;
+using UnityEngine.Serialization;
 
 public class GameController : MonoBehaviour {
+    
     public GameObject Cursor;
+    public Spawnable SpawnObjectPrefab;
 
-    public Spawnable spawnObjectPrefab;
+    private bool _isGravity;
 
-    private bool IsGravity = false;
-
-    // Use this for initialization
-    void Start () {
-        if (!Cursor)
-        {
+    private void Start(){
+        if (!Cursor){
             Debug.LogError("!Cursor");
         }
-        if (!spawnObjectPrefab)
-        {
+        if (!SpawnObjectPrefab){
             Debug.LogError("!spawnObjectPrefab");
         }
 
         //GravityOff();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    public void StartGame()
-    {
+    public void StartGame(){
         Debug.Log("GameController::StartGame");
 
         SpawnObject();
     }
 
-    public void SpawnObject()
-    {
-        Spawn(spawnObjectPrefab, new Vector3(0, 0, 2), Quaternion.identity);
+    public void SpawnObject(){
+        Spawn(SpawnObjectPrefab, new Vector3(0, 0, 2), Quaternion.identity);
     }
 
-    public void Spawn(
-    Spawnable spawnObjectPrefab,
-    Vector3 position,
-    Quaternion rotation)
-    {
+    public void Spawn(Spawnable spawnObjectPrefab, Vector3 position, Quaternion rotation){
         Debug.Log("Spawner::Spawn");
         var spawnedObject = Instantiate(spawnObjectPrefab, position, rotation, null);
 
         SpawnInit(spawnedObject);
     }
 
-    private void SpawnInit(Spawnable spawnedObject)
-    {
+    private void SpawnInit(Spawnable spawnedObject){
         spawnedObject.Init(Cursor);
-        var rigidbody = spawnedObject.GetComponent<Rigidbody>();
-        if (rigidbody)
-        {
-            rigidbody.isKinematic = !IsGravity;
+        var rigid = spawnedObject.GetComponent<Rigidbody>();
+        if(rigid != null){
+            rigid.isKinematic = !_isGravity;
         }
     }
 
-    public void ToggleGravity()
-    {
-        if (IsGravity)
-        {
+    public void ToggleGravity(){
+        if (_isGravity){
             GravityOff();
-        }
-        else
-        {
+        }else{
             GravityOn();
         }
     }
 
-    public void GravityOn()
-    {
-        IsGravity = true;
+    public void GravityOn(){
+        _isGravity = true;
 
         Debug.Log("Spawner::GravityOn");
 
         var foundObjects = FindObjectsOfType<Rigidbody>();
-        foreach(var foundObject in foundObjects)
-        {
+        foreach(var foundObject in foundObjects){
             foundObject.isKinematic = false;
         }
     }
 
-    public void GravityOff()
-    {
-        IsGravity = false;
+    public void GravityOff(){
+        _isGravity = false;
 
         Debug.Log("Spawner::GravityOff");
 
         var foundObjects = FindObjectsOfType<Rigidbody>();
-        foreach (var foundObject in foundObjects)
-        {
+        foreach (var foundObject in foundObjects){
             foundObject.isKinematic = true;
         }
     }
