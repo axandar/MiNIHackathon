@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTransform: {fileID: 0}
-  _moveSpeed: 0.05
+  _moveSpeed: 0.01
 --- !u!135 &135779309503636570
 SphereCollider:
   m_ObjectHideFlags: 1
